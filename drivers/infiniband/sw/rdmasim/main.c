@@ -7,6 +7,7 @@
 #include <linux/module.h>
 #include <rdma/rdma_netlink.h>
 #include <rdma/ib_verbs.h>
+#include <net/addrconf.h>
 
 #include "rdmasim.h"
 #include "verbs.h"
@@ -31,6 +32,7 @@ static struct rdmasim_device *rdmasim_create_device(struct net_device *netdev)
 
 	ibdev = &rdev->ibdev;
 	strlcpy(ibdev->node_desc, RDMASIM_NODE_DESC, sizeof(ibdev->node_desc));
+	addrconf_addr_eui48((u8 *)&ibdev->node_guid, netdev->dev_addr);
 	ibdev->node_type = RDMA_NODE_IB_CA;
 	ibdev->phys_port_cnt = RDMASIM_MAX_PORT;
 	ib_set_device_ops(ibdev, &rdmasim_dev_ops);
