@@ -28,6 +28,17 @@
 struct rdmasim_device {
 	struct ib_device ibdev;
 	struct net_device *netdev;
+
+	atomic_t num_pd;
 };
+
+struct rdmasim_pd {
+	struct ib_pd ibpd;
+};
+
+static inline struct rdmasim_device *to_rdmasim_dev(struct ib_device *ibdev)
+{
+	return container_of(ibdev, struct rdmasim_device, ibdev);
+}
 
 #endif

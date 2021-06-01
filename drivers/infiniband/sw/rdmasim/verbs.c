@@ -7,6 +7,8 @@
 #include <rdma/ib_verbs.h>
 #include <linux/types.h>
 
+#include "rdmasim.h"
+
 int rdmasim_query_device(struct ib_device *device,
 			 struct ib_device_attr *device_attr,
 			 struct ib_udata *udata)
@@ -72,4 +74,22 @@ int rdmasim_query_port(struct ib_device *device, u32 port_num,
 
 void rdmasim_dealloc_driver(struct ib_device *dev)
 {
+}
+
+int rdmasim_alloc_pd(struct ib_pd *pd, struct ib_udata *udata)
+{
+	struct rdmasim_device *rdev = to_rdmasim_dev(pd->device);
+
+	if (atomic_add_unless(&rdev->num_pd, 1, RDMASIM_MAX_PD))
+		return -ENOMEM;
+
+	return 0;
+}
+
+int rdmasim_dealloc_pd(struct ib_pd *pd, struct ib_udata *udata)
+{
+	struct rdmasim_device *rdev = to_rdmasim_dev(pd->device);
+
+	atomic_dec(&rdev->num_pd);
+	return 0;
 }

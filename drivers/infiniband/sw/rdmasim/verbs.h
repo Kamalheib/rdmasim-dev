@@ -19,4 +19,7 @@ int rdmasim_query_port(struct ib_device *device, u32 port_num,
 
 void rdmasim_dealloc_driver(struct ib_device *dev);
 
+int rdmasim_alloc_pd(struct ib_pd *pd, struct ib_udata *udata);
+int rdmasim_dealloc_pd(struct ib_pd *pd, struct ib_udata *udata);
+
 #endif
