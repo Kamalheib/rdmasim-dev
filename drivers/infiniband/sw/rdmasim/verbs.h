@@ -17,6 +17,9 @@ int rdmasim_get_port_immutable(struct ib_device *device, u32 port_num,
 int rdmasim_query_port(struct ib_device *device, u32 port_num,
 		       struct ib_port_attr *port_attr);
 
+int rdmasim_query_pkey(struct ib_device *device, u32 port_num, u16 index,
+		       u16 *pkey);
+
 void rdmasim_dealloc_driver(struct ib_device *dev);
 
 int rdmasim_alloc_pd(struct ib_pd *pd, struct ib_udata *udata);

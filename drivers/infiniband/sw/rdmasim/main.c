@@ -17,6 +17,7 @@ static const struct ib_device_ops rdmasim_dev_ops = {
 	.dealloc_driver = rdmasim_dealloc_driver,
 	.dealloc_pd = rdmasim_dealloc_pd,
 	.query_device = rdmasim_query_device,
+	.query_pkey = rdmasim_query_pkey,
 	.query_port = rdmasim_query_port,
 	.get_port_immutable = rdmasim_get_port_immutable,
 };
