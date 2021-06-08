@@ -20,6 +20,9 @@ int rdmasim_query_port(struct ib_device *device, u32 port_num,
 int rdmasim_query_pkey(struct ib_device *device, u32 port_num, u16 index,
 		       u16 *pkey);
 
+enum rdma_link_layer rdmasim_get_link_layer(struct ib_device *device,
+					    u32 port_num);
+
 void rdmasim_dealloc_driver(struct ib_device *dev);
 
 int rdmasim_alloc_pd(struct ib_pd *pd, struct ib_udata *udata);

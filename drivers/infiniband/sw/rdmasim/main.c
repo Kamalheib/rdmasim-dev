@@ -20,6 +20,7 @@ static const struct ib_device_ops rdmasim_dev_ops = {
 	.query_pkey = rdmasim_query_pkey,
 	.query_port = rdmasim_query_port,
 	.get_port_immutable = rdmasim_get_port_immutable,
+	.get_link_layer = rdmasim_get_link_layer,
 };
 
 static struct rdmasim_device *rdmasim_create_device(struct net_device *netdev)

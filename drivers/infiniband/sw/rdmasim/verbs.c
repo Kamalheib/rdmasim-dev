@@ -83,6 +83,12 @@ int rdmasim_query_pkey(struct ib_device *device, u32 port_num, u16 index,
 	return 0;
 }
 
+enum rdma_link_layer rdmasim_get_link_layer(struct ib_device *device,
+					    u32 port_num)
+{
+	return IB_LINK_LAYER_ETHERNET;
+}
+
 void rdmasim_dealloc_driver(struct ib_device *dev)
 {
 }
